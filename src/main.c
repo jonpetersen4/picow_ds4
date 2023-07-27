@@ -133,13 +133,14 @@ void main(void) {
 	multicore_launch_core1(bt_main);
 	// Wait for init (should do a handshake with the fifo here?)
 	sleep_ms(1000);
-
+	//busy_wait_ms(5000);
 	struct chassis chassis = { 0 };
 	chassis_init(&chassis, 6, 8);
 
 	struct bt_hid_state state;
 	for ( ;; ) {
 		sleep_ms(20);
+		//busy_wait_ms(20);
 		bt_hid_get_latest(&state);
 		printf("buttons: %04x, l: %d,%d, r: %d,%d, l2,r2: %d,%d hat: %d\n",
 				state.buttons, state.lx, state.ly, state.rx, state.ry,
