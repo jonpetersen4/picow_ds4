@@ -1,14 +1,19 @@
-cmake_minimum_required(VERSION 3.13)
+add_library(picow_ds4 
+    src/bt_hid.c
+)
 
-set(PICO_BTSTACK_PATH ${CMAKE_CURRENT_LIST_DIR}/btstack)
+target_include_directories(picow_ds4 PUBLIC 
+    ${CMAKE_CURRENT_LIST_DIR}/src)
 
-include(pico_sdk_import.cmake)
+target_link_libraries(picow_ds4
+	hardware_pwm
+	hardware_gpio
+	pico_stdlib
+	pico_cyw43_arch_none
+    pico_btstack_classic
+    pico_btstack_ble
+    pico_btstack_cyw43
+	pico_multicore
+	pico_stdio_usb
+)
 
-project(bt_hid C CXX ASM)
-
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
-
-pico_sdk_init()
-
-add_subdirectory(src)
