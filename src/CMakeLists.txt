@@ -8,7 +8,7 @@ add_executable(picow_ds4
 
 
 pico_enable_stdio_usb(picow_ds4 1)
-pico_enable_stdio_uart(picow_ds4 0)
+pico_enable_stdio_uart(picow_ds4 1)
 
 target_include_directories(picow_ds4 PRIVATE
 	${CMAKE_CURRENT_LIST_DIR}
